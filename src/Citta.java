@@ -5,7 +5,7 @@ public class Citta {
     private String nome;
     private Posizione posizione;
     private double peso;
-    private HashMap<Integer,Double> strade;
+    private HashMap<Integer,Double> strade = new HashMap<>();
     private Citta citta_precedente;
 
     public Citta(int id, String nome, Posizione posizione) {
@@ -55,5 +55,10 @@ public class Citta {
     public void setCitta_precedente(Citta citta_precedente) {
         this.citta_precedente = citta_precedente;
     }
-
+    public String toString(){
+        String citta = "id:\t" + id + "\nnome:\t" + nome + "\nposizione:\t(" + posizione.getX() + ", " + posizione.getY() + ", " + posizione.getZ() + ")";
+        citta += "\nlink to:\t";
+        citta += "\n" +strade.toString();
+        return citta;
+    }
 }

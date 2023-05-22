@@ -1,5 +1,11 @@
+import java.util.ArrayList;
+
 public class Main {
     public static void main(String[] args) {
-        System.out.println("Hello world!");
+        Reader r = new Reader();
+        ArrayList<Citta> mappa = r.leggi_mappa();
+        for(Citta c : mappa)
+            System.out.println(c);
+
     }
 }
