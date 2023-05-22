@@ -1,22 +1,22 @@
 public class Posizione {
-    private final double x;
-    private final double y;
-    private final double z;
-    public Posizione(double x,double y,double z){
+    private final int x;
+    private final int y;
+    private final int z;
+    public Posizione(int x, int y, int z){
         this.x=x;
         this.y=y;
         this.z=z;
     }
 
-    public double getX() {
+    public int getX() {
         return x;
     }
 
-    public double getY() {
+    public int getY() {
         return y;
     }
 
-    public double getZ() {
+    public int getZ() {
         return z;
     }
 

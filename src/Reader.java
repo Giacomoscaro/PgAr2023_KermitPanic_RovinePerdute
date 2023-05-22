@@ -13,7 +13,7 @@ public class Reader {
         XMLStreamReader reader = null;
         {//inizializzazione dello StreamReader
             try {
-                file = new FileInputStream("fileXML/PgAr_Map_5.xml");
+                file = new FileInputStream("fileXML/PgAr_Map_12.xml");
                 reader = input.createXMLStreamReader(file);
                 reader.next();
             } catch (Exception e) {

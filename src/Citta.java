@@ -55,10 +55,15 @@ public class Citta {
     public void setCitta_precedente(Citta citta_precedente) {
         this.citta_precedente = citta_precedente;
     }
-    public String toString(){
+    public String toString() {
         String citta = "id:\t" + id + "\nnome:\t" + nome + "\nposizione:\t(" + posizione.getX() + ", " + posizione.getY() + ", " + posizione.getZ() + ")";
-        citta += "\nlink to:\t";
-        citta += "\n" +strade.toString();
+        if (strade.size() > 0) {
+            citta += "\nlink to:\t";
+            citta += "\n" + strade.toString();
+        }
+        else{
+            citta += "\nla città non ha strade praticabili verso le altre città";
+        }
         return citta;
     }
 }
