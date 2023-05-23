@@ -12,6 +12,7 @@ public class Citta {
         this.id = id;
         this.nome = nome;
         this.posizione = posizione;
+        this.strade = new HashMap<Integer,Double>();
     }
 
     /**
