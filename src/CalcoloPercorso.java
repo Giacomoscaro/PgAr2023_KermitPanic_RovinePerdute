@@ -1,3 +1,4 @@
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Map.Entry;
 import java.math.*;
@@ -54,17 +55,25 @@ public class CalcoloPercorso {
 		
 		return cittaMinore;
 	}
-	
-	private static ArrayList<Integer> idCittaVicine(Citta citta) {
+
+	private static boolean nodoPresente(int id, ArrayList<Citta>nodi){
+		for(Citta c : nodi)
+			if(c.getId() == id)
+				return true;
+
+		return false;
+	}
+	private static ArrayList<Integer> idCittaVicine(Citta citta, ArrayList<Citta>nodiValidi) {
 		ArrayList<Integer>cittaVicine = new ArrayList<Integer>();
 		for(Entry c : citta.getStrade().entrySet())
-			cittaVicine.add((Integer)c.getKey());
+			if(nodoPresente((Integer)c.getKey(), nodiValidi))
+					cittaVicine.add((Integer)c.getKey());
 		
 		return cittaVicine;
 	}
 	public static ArrayList<Citta> calcolo_percorso(Citta partenza, Citta arrivo, ArrayList<Citta>listaCitta) {
 		ArrayList<Citta>nodiCitta=(ArrayList<Citta>) listaCitta.clone();
-		
+		partenza.setPeso(0);
 		while(!nodiCitta.isEmpty()) {
 			
 			Citta cittaMinore = cittaPesoMinore(nodiCitta);
@@ -74,7 +83,7 @@ public class CalcoloPercorso {
 			
 			nodiCitta.remove(cittaMinore);
 			
-			for(Integer i : idCittaVicine(cittaMinore)) {
+			for(Integer i : idCittaVicine(cittaMinore,nodiCitta)) {
 				double pesoVicino = cittaMinore.getPeso() + cittaMinore.getStrade().get(i);
 				
 				if(pesoVicino < listaCitta.get(i).getPeso()) {
