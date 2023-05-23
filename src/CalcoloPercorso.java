@@ -13,8 +13,8 @@ public class CalcoloPercorso {
 			listaCitta.get(i).setCitta_precedente(null);
 			for(Entry<Integer,Double> s : listaCitta.get(i).getStrade().entrySet()) {
 				if(team==1)
-					s.setValue(distanza1( listaCitta.get(i), idToCitta(s.getKey(), listaCitta) ));
-				else s.setValue(distanza2( listaCitta.get(i), idToCitta(s.getKey(), listaCitta) ));
+					s.setValue(distanza1( listaCitta.get(i), listaCitta.get(s.getKey()) ));
+				else s.setValue(distanza2( listaCitta.get(i), listaCitta.get(s.getKey()) ));
 			}
 		}
 	}
@@ -39,14 +39,6 @@ public class CalcoloPercorso {
 	
 	private static double distanza2(Citta c1, Citta c2) {
 		return Math.abs(c1.getPosizione().getZ() - c2.getPosizione().getZ());
-	}
-	
-	private static Citta idToCitta(int id, ArrayList<Citta>listaCitta) {
-		for(Citta c : listaCitta)
-			if(c.getId() == id)
-				return c;
-		
-		return null;
 	}
 	
 	private static Citta cittaPesoMinore(ArrayList<Citta> listaCitta) {
@@ -85,9 +77,9 @@ public class CalcoloPercorso {
 			for(Integer i : idCittaVicine(cittaMinore)) {
 				double pesoVicino = cittaMinore.getPeso() + cittaMinore.getStrade().get(i);
 				
-				if(pesoVicino < idToCitta(i, listaCitta).getPeso()) {
-					idToCitta(i, listaCitta).setPeso(pesoVicino);
-					idToCitta(i, listaCitta).setCitta_precedente(cittaMinore);
+				if(pesoVicino < listaCitta.get(i).getPeso()) {
+					listaCitta.get(i).setPeso(pesoVicino);
+					listaCitta.get(i).setCitta_precedente(cittaMinore);
 				}
 			}
 			
