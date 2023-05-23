@@ -6,22 +6,6 @@ import java.lang.Exception;
 
 public class CalcoloPercorso {
 	/**
-	 * Porta tutti i pesi delle strade a Double.POSITIVE_INFINITY
-	 * @param listaCitta lista delle città dove resettare i pesi
-	 */
-	public static void inizializza_citta(ArrayList<Citta> listaCitta, int team) {
-		for(int i=0; i<listaCitta.size(); i++) {
-			listaCitta.get(i).setCitta_precedente(null);
-			listaCitta.get(i).setPeso(Double.POSITIVE_INFINITY);
-			for(Entry<Integer,Double> s : listaCitta.get(i).getStrade().entrySet()) {
-				if(team==1)
-					s.setValue(distanza1( listaCitta.get(i), listaCitta.get(s.getKey()) ));
-				else s.setValue(distanza2( listaCitta.get(i), listaCitta.get(s.getKey()) ));
-			}
-		}
-	}
-	
-	/**
 	 * Visualizza i pesi delle strade delle città
 	 * @param listaCitta
 	 */
@@ -35,11 +19,11 @@ public class CalcoloPercorso {
 		}
 	}
 	
-	private static double distanza1(Citta c1, Citta c2) {
+	public static double distanza1(Citta c1, Citta c2) {
 		return Math.sqrt(Math.pow(c1.getPosizione().getX()-c2.getPosizione().getX(),2) + Math.pow(c1.getPosizione().getY()-c2.getPosizione().getY(),2));
 	}
 	
-	private static double distanza2(Citta c1, Citta c2) {
+	public static double distanza2(Citta c1, Citta c2) {
 		return Math.abs(c1.getPosizione().getZ() - c2.getPosizione().getZ());
 	}
 	
