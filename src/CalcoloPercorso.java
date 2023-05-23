@@ -12,6 +12,7 @@ public class CalcoloPercorso {
 	public static void inizializza_citta(ArrayList<Citta> listaCitta, int team) {
 		for(int i=0; i<listaCitta.size(); i++) {
 			listaCitta.get(i).setCitta_precedente(null);
+			listaCitta.get(i).setPeso(Double.POSITIVE_INFINITY);
 			for(Entry<Integer,Double> s : listaCitta.get(i).getStrade().entrySet()) {
 				if(team==1)
 					s.setValue(distanza1( listaCitta.get(i), listaCitta.get(s.getKey()) ));
@@ -78,9 +79,6 @@ public class CalcoloPercorso {
 			
 			Citta cittaMinore = cittaPesoMinore(nodiCitta);
 			
-			if(cittaMinore == arrivo)
-				break;
-			
 			nodiCitta.remove(cittaMinore);
 			
 			for(Integer i : idCittaVicine(cittaMinore,nodiCitta)) {
@@ -91,6 +89,8 @@ public class CalcoloPercorso {
 					listaCitta.get(i).setCitta_precedente(cittaMinore);
 				}
 			}
+			if(cittaMinore == arrivo)
+				break;
 			
 		}
 		
@@ -99,7 +99,7 @@ public class CalcoloPercorso {
 		do {
 			percorso.add(0,tappa);
 			tappa = tappa.getCitta_precedente();
-		}while(percorso.get(0) == partenza);
+		}while(percorso.get(0) != partenza);
 		
 		return percorso;
 	}
