@@ -5,13 +5,19 @@ import java.io.FileOutputStream;
 import java.util.ArrayList;
 
 public class Writer {
-    public void scrivi_percorsi(ArrayList<Citta> percorso1, ArrayList<Citta> percorso2) throws XMLStreamException {
+    private String outputFile;
+	
+    public Writer(String outputFile) {
+	   this.outputFile = outputFile;
+   }
+	
+	public void scrivi_percorsi(ArrayList<Citta> percorso1, ArrayList<Citta> percorso2) throws XMLStreamException {
         FileOutputStream risultato;
         XMLOutputFactory output = XMLOutputFactory.newInstance();
         XMLStreamWriter writer=null;
         {
         try {//inizializzazione del writer per generare l'xml definitivo
-            risultato = new FileOutputStream("fileXML/percorsiRovine.xml");
+            risultato = new FileOutputStream(outputFile);
             writer = output.createXMLStreamWriter(risultato);
             writer.writeStartDocument("UTF-8", "1.0");
         } catch (Exception e) {

@@ -13,7 +13,7 @@ public class Main {
         RovineManager m = new RovineManager(mappa);
         ArrayList<Citta> p1 = m.calcola_peso_team1(m.getLista_citta());
         ArrayList<Citta> p2 = m.calcola_peso_team2(m.getLista_citta());
-        Writer w = new Writer();
+        Writer w = new Writer("./fileXML/percorsiRovine.xml");
         w.scrivi_percorsi(p1, p2);
     }
 }
