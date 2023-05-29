@@ -3,9 +3,24 @@ import javax.xml.stream.XMLStreamConstants;
 import javax.xml.stream.XMLStreamException;
 import javax.xml.stream.XMLStreamReader;
 import java.io.FileInputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.io.File;
 import java.util.ArrayList;
+import java.lang.Exception;
 
 public class Reader {
+	private String inputFile;
+	
+	public Reader(String inputFile) throws Exception {
+		Path inputPath = Paths.get(inputFile);
+		if( !Files.exists(inputPath)) {
+			throw new Exception("File: " + inputFile + " non trovato");
+		}
+		this.inputFile = inputFile;
+	}
+	
     public ArrayList<Citta> leggi_mappa(){
         ArrayList<Citta> mappa = new ArrayList<>();
         FileInputStream file;
@@ -13,7 +28,7 @@ public class Reader {
         XMLStreamReader reader = null;
         {//inizializzazione dello StreamReader
             try {
-                file = new FileInputStream("fileXML/PgAr_Map_12.xml");
+                file = new FileInputStream(inputFile);
                 reader = input.createXMLStreamReader(file);
                 reader.next();
             } catch (Exception e) {

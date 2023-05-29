@@ -3,7 +3,12 @@ import java.util.ArrayList;
 
 public class Main {
     public static void main(String[] args) throws XMLStreamException {
-        Reader r = new Reader();
+		Reader r=null;
+    	try {
+			r = new Reader("./fileXML/PgAr_Map_10000.xml");
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
         ArrayList<Citta> mappa = r.leggi_mappa();
         RovineManager m = new RovineManager(mappa);
         ArrayList<Citta> p1 = m.calcola_peso_team1(m.getLista_citta());
