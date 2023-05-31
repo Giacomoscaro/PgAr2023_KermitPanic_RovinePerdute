@@ -5,8 +5,8 @@ public class Citta {
     private String nome;
     private Posizione posizione;
     private double peso;
-    private HashMap<Integer,Double> strade = new HashMap<>();
-    private Citta citta_precedente;
+    private HashMap<Integer,Double> strade = new HashMap<>(); // HashMap contenente le città collegate con il loro peso (distanza) relativo a quella attuale
+    private Citta citta_precedente; // città attraversata in precedenza prima di arrivare a quella attuale
 
     public Citta(int id, String nome, Posizione posizione) {
         this.id = id;
@@ -56,6 +56,10 @@ public class Citta {
     public void setCitta_precedente(Citta citta_precedente) {
         this.citta_precedente = citta_precedente;
     }
+    
+    /**
+     * Ritorna una stringa che descrive una citta: nome, posizione, collegamenti con altre città
+     */
     public String toString() {
         String citta = "id:\t" + id + "\nnome:\t" + nome + "\nposizione:\t(" + posizione.getX() + ", " + posizione.getY() + ", " + posizione.getZ() + ")";
         if (strade.size() > 0) {
