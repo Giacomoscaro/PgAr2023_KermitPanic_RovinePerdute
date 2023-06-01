@@ -17,7 +17,7 @@ public class Writer {
      * @param percorso2
      * @throws XMLStreamException
      */
-	public void scrivi_percorsi(ArrayList<Citta> percorso1, ArrayList<Citta> percorso2) throws XMLStreamException {
+	public void scrivi_percorsi(Percorso<Citta> percorso1, Percorso<Citta> percorso2) throws XMLStreamException {
         FileOutputStream risultato;
         XMLOutputFactory output = XMLOutputFactory.newInstance();
         XMLStreamWriter writer=null;
@@ -35,11 +35,11 @@ public class Writer {
         
         writer.writeStartElement("route");
         writer.writeAttribute("team", "Tonathiu");
-        writer.writeAttribute("cost", Double.toString(percorso1.get(percorso1.size()-1).getPeso())); // il costo totale è uguale al costo cumulativo della città di arrivo
-        writer.writeAttribute("cities", Integer.toString(percorso1.size()));
+        writer.writeAttribute("cost", Double.toString(percorso1.getCosto()) ); // il costo totale è uguale al costo cumulativo della città di arrivo
+        writer.writeAttribute("cities", Integer.toString(percorso1.getNodi().size()));
         
         // scrittura del percorso 1
-        for(Citta c : percorso1){
+        for(Citta c : percorso1.getNodi()){
             writer.writeEmptyElement("city");
             writer.writeAttribute("id", Integer.toString(c.getId()));
             writer.writeAttribute("name", c.getNome());
@@ -48,11 +48,11 @@ public class Writer {
         
         writer.writeStartElement("route");
         writer.writeAttribute("team", "Metztli");
-        writer.writeAttribute("cost", Double.toString(percorso2.get(percorso2.size()-1).getPeso()));
-        writer.writeAttribute("cities", Integer.toString(percorso2.size()));
+        writer.writeAttribute("cost", Double.toString(percorso2.getCosto()) );
+        writer.writeAttribute("cities", Integer.toString(percorso2.getNodi().size()));
         
         // scrittura del percorso 2
-        for(Citta c : percorso2){
+        for(Citta c : percorso2.getNodi()){
             writer.writeEmptyElement("city");
             writer.writeAttribute("id", Integer.toString(c.getId()));
             writer.writeAttribute("name", c.getNome());

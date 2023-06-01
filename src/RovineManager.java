@@ -30,12 +30,13 @@ public class RovineManager {
 
     /**
      * Restituisce il percorso per il Team 1
-     * @param lista_citta
+     * @param lista_citta8
      * @return
      */
-    public ArrayList<Citta> calcola_peso_team1(ArrayList<Citta> lista_citta){
+    public Percorso<Citta> calcola_peso_team1(ArrayList<Citta> lista_citta){
         inizializza_citta(lista_citta, 1);
-        return CalcoloPercorso.calcolo_percorso(lista_citta.get(0), lista_citta.get(lista_citta.size()-1), lista_citta);
+        ArrayList<Citta> tappe = CalcoloPercorso.calcolo_percorso(lista_citta.get(0), lista_citta.get(lista_citta.size()-1), lista_citta);
+        return new Percorso(tappe, tappe.get(tappe.size()-1).getPeso());
     }
     
     /**
@@ -43,9 +44,10 @@ public class RovineManager {
      * @param lista_citta
      * @return
      */
-    public ArrayList<Citta> calcola_peso_team2(ArrayList<Citta> lista_citta){
+    public Percorso<Citta> calcola_peso_team2(ArrayList<Citta> lista_citta){
         inizializza_citta(lista_citta, 2);
-        return CalcoloPercorso.calcolo_percorso(lista_citta.get(0), lista_citta.get(lista_citta.size()-1), lista_citta);
+        ArrayList<Citta> tappe = CalcoloPercorso.calcolo_percorso(lista_citta.get(0), lista_citta.get(lista_citta.size()-1), lista_citta);
+        return new Percorso(tappe, tappe.get(tappe.size()-1).getPeso());
     }
 
 }

@@ -125,7 +125,6 @@ public class CalcoloPercorso {
 				break;
 			
 		}
-		
 		ArrayList<Citta> percorso = new ArrayList<Citta>();
 		/*
 		 * Scorre tutte le città dall'arrivo alla partenza sfruttando l'attributo cittaPrecedente
