@@ -14,9 +14,11 @@ public class Main {
 		}
         ArrayList<Citta> mappa = r.leggi_mappa(); // legge le città dal file di input
         RovineManager m = new RovineManager(mappa);
-        ArrayList<Citta> p1 = m.calcola_peso_team1(m.getLista_citta()); // percorso per il team 1
+		ArrayList<Citta> p1 = m.calcola_peso_team1(m.getLista_citta()); // percorso per il team 1
+		double peso1 = p1.get(p1.size()-1).getPeso();
         ArrayList<Citta> p2 = m.calcola_peso_team2(m.getLista_citta()); // percorso per il team 2
+		double peso2 = p2.get(p2.size()-1).getPeso();
         Writer w = new Writer(OUTPUT_FILE);
-        w.scrivi_percorsi(p1, p2);
+        w.scrivi_percorsi(p1, peso1, p2, peso2);
     }
 }
