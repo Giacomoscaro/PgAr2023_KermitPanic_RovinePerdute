@@ -14,7 +14,9 @@ public class Writer {
     /**
      * Scrive su outputFile i percorsi dei due team
      * @param percorso1
+     * @param peso1
      * @param percorso2
+     * @param peso2
      * @throws XMLStreamException
      */
 	public void scrivi_percorsi(ArrayList<Citta> percorso1, double peso1, ArrayList<Citta> percorso2, double peso2) throws XMLStreamException {
@@ -35,7 +37,7 @@ public class Writer {
         
         writer.writeStartElement("route");
         writer.writeAttribute("team", "Tonathiu");
-        writer.writeAttribute("cost", String.format("%.2f", peso1)); // il costo totale è uguale al costo cumulativo della città di arrivo
+        writer.writeAttribute("cost", String.format("%.2f", peso1));
         writer.writeAttribute("cities", Integer.toString(percorso1.size()));
         
         // scrittura del percorso 1
